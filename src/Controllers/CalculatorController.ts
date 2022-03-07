@@ -1,3 +1,4 @@
+import ValidationError from './../ErrorHandlers/ValidationError'
 type operator = 'add' | 'subtract' | 'multiply' | 'divide';
 
 class CalculatorController {
@@ -14,7 +15,16 @@ class CalculatorController {
     }
 
     static parseInput(values:string): number[] {
-        return values.split(',').map((value) => parseInt(value, 10));
+        // Can't shorthand this map function otherwise parseInt will take the index from map as radix!
+        const returnValues: number[] = values.split(',').map((value) => parseInt(value, 10));
+
+        // Use Number.isNaN instead of the isNaN function as that has ambiguous results
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN#description
+        if(returnValues.findIndex((value) => Number.isNaN(value)) > -1) {
+            throw new ValidationError('Invalid input type provided. All values should be numbers.')
+        };
+
+        return returnValues;
     }
 
     static add(values: string): number {
