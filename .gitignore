@@ -20,3 +20,7 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+
+
+# Built TS folder
+bin/
