@@ -1,6 +1,6 @@
 class CalculatorController {
 
-    static operate() {
+    static operate(action: string, values: number[]): number {
 
     }
 
