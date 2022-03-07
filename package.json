@@ -4,6 +4,10 @@
   "repository": "git@github.com:james-salloway/calculator.git",
   "author": "James Salloway <james@jmsalloway.co.uk>",
   "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
     "build": "tsc",
     "start": "nodemon ./src/server.ts",
