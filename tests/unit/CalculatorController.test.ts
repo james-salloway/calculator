@@ -1,5 +1,5 @@
 import CalculatorController from "../../src/Controllers/CalculatorController";
-
+import ValidationError from './../../src/ErrorHandlers/ValidationError';
 
 describe('Calculator Controller', () => {
 
@@ -9,6 +9,23 @@ describe('Calculator Controller', () => {
                 expect(CalculatorController.operate('add', [1,2,3])).toEqual(6);
             });
         });
+
+
+        describe('parseInput method', () => {
+            test('Should convert a string of comma separated numbers into an array of numbers', () => {
+                expect(CalculatorController.parseInput('1,2,3')).toEqual([1,2,3]);
+            });
+
+            test('Should throw a validation error if a non-number value is found', () => {
+                try {
+                    CalculatorController.parseInput('1,2,test,3')
+                } catch (err) {
+                    expect(err).toBeInstanceOf(ValidationError);
+                    expect(err).toHaveProperty('message', 'Invalid input type provided. All values should be numbers.');
+                }
+            });
+        });
+
     });
 
     describe('public methods', () => {
