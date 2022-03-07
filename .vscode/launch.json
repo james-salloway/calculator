@@ -16,5 +16,17 @@
             "cwd": "${workspaceRoot}",
             "timeout": 10000
           },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Run integration tests",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": [
+              "test:integration"
+            ],
+            "port": 5858,
+            "cwd": "${workspaceRoot}",
+            "timeout": 10000
+          },
     ]
 }
