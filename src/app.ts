@@ -3,7 +3,7 @@ import CalculatorController from './Controllers/CalculatorController';
 import ValidationError from './ErrorHandlers/ValidationError';
 
 const app = express();
-const INVALID_QS_MESSAGE = 'Invalid input specified. Pass a single querystring parameter (values) as a comma separated list of numbers';
+const INVALID_QS_MESSAGE = 'Invalid input specified. Pass a single querystring parameter named values, containing a comma separated list of numbers';
 
 app.get('/Add', (req:express.Request, res:express.Response) => {
     try {
