@@ -16,7 +16,7 @@ class CalculatorController {
 
     static parseInput(values:string): number[] {
         // Can't shorthand this map function otherwise parseInt will take the index from each map iteration as a radix!
-        const returnValues: number[] = values.split(',').map((value) => parseInt(value, 10));
+        const returnValues: number[] = values.split(',').map(parseFloat);
 
         // Use Number.isNaN instead of the isNaN function as that has ambiguous results
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN#description
