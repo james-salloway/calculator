@@ -32,7 +32,7 @@ describe('Calculator Controller', () => {
     
         describe('Divide method', () => {
             test('should add a list of values correctly', () => {
-                expect(CalculatorController.divide('20,2,2')).toEqual(2);
+                expect(CalculatorController.divide('20,2,2')).toEqual(5);
             });
         });
     });
