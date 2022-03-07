@@ -45,11 +45,27 @@ describe('Calculator Controller', () => {
             test('should add a list of values correctly', () => {
                 expect(CalculatorController.multiply('2,3,4')).toEqual(24);
             });
+
+            test('Passing 0 as any of the values should not call operate method', () => {
+                const operateSpy = jest.spyOn(CalculatorController, 'operate');
+
+                CalculatorController.multiply('2,3,4,0,6,7,8')
+                expect(operateSpy).toHaveBeenCalledTimes(0);
+            });
         });
     
         describe('Divide method', () => {
             test('should add a list of values correctly', () => {
                 expect(CalculatorController.divide('20,2,2')).toEqual(5);
+            });
+
+            test('Passing 0 as any of the values should throw a validation error', () => {
+                try {
+                    CalculatorController.divide('1,2,0,3');
+                } catch (err) {
+                    expect(err).toBeInstanceOf(ValidationError);
+                    expect(err).toHaveProperty('message', 'Cannot divide by 0.');
+                }
             });
         });
     });
