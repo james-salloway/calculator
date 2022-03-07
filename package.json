@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc",
     "deploy": "node ./bin/server.js",
-    "predeploy": "yarn build",
+    "predeploy": "yarn && yarn build",
     "start": "nodemon ./src/server.ts",
     "test": "jest ./tests",
     "test:unit": "jest ./tests/unit",
