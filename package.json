@@ -4,6 +4,12 @@
   "repository": "git@github.com:james-salloway/calculator.git",
   "author": "James Salloway <james@jmsalloway.co.uk>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon ./src/server.ts",
+    "test": "jest ./tests",
+    "test:unit": "jest ./tests/unit"
+  },
   "dependencies": {
     "express": "^4.17.3"
   },
