@@ -15,7 +15,7 @@ class CalculatorController {
     }
 
     static parseInput(values:string): number[] {
-        // Can't shorthand this map function otherwise parseInt will take the index from map as radix!
+        // Can't shorthand this map function otherwise parseInt will take the index from each map iteration as a radix!
         const returnValues: number[] = values.split(',').map((value) => parseInt(value, 10));
 
         // Use Number.isNaN instead of the isNaN function as that has ambiguous results
@@ -39,11 +39,22 @@ class CalculatorController {
 
     static multiply(values: string): number {
         const parsedValues = CalculatorController.parseInput(values);
+
+        // Could refactor this into a ternary statement but I find this more readable
+        if(parsedValues.findIndex((value) => value === 0) > -1) {
+            return 0;
+        }
+
         return CalculatorController.operate('multiply', parsedValues);
     }
 
     static divide(values: string): number {
         const parsedValues = CalculatorController.parseInput(values);
+
+        if(parsedValues.findIndex((num) => num === 0) > -1) {
+            throw new ValidationError('Cannot divide by 0.');
+        } 
+
         return CalculatorController.operate('divide', parsedValues);
     }
 
